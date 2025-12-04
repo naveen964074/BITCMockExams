@@ -140,6 +140,7 @@ const Results: React.FC = () => {
             </div>
           </div>
         </Card>
+        
 
         {/* Detailed Explanations */}
         <Card>
