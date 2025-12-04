@@ -1,18 +1,21 @@
 {
   "version": "0.2.0",
   "configurations": [
+
+    
+ 
     {
-      "type": "edge",
-      "request": "launch",
-      "name": "localhost (Edge)",
-      "url": "https://localhost:50402",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
-      "type": "chrome",
+      "type": "pwa-chrome",
       "request": "launch",
       "name": "localhost (Chrome)",
-      "url": "https://localhost:50402",
+      "url": "http://localhost:5174",
+      "webRoot": "${workspaceFolder}"
+    },
+       {
+      "type": "pwa-msedge",
+      "request": "launch",
+      "name": "localhost (Edge)",
+      "url": "http://localhost:5174/",
       "webRoot": "${workspaceFolder}"
     }
   ]

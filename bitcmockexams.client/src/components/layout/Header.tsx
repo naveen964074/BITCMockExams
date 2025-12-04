@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Button from '../ui/Button';
 
@@ -7,6 +7,7 @@ const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,6 +28,21 @@ const Header = () => {
         { path: '/mock-exams', label: 'Mock Exams' },
         { path: '/contact', label: 'Contact' }
     ];
+
+    const isLoggedIn = (() => {
+        try {
+            return localStorage.getItem('isLoggedIn') === 'true';
+        } catch {
+            return false;
+        }
+    })();
+
+    const handleLogout = () => {
+        try {
+            localStorage.removeItem('isLoggedIn');
+        } catch {}
+        navigate('/login');
+    };
 
     const isActive = (path: string) => location.pathname === path;
 
@@ -54,12 +70,31 @@ const Header = () => {
                         </ul>
 
                         <div className="flex flex-col w-full gap-3 mt-4 pt-4 border-t border-border md:flex-row md:w-auto md:gap-4 md:mt-0 md:pt-0 md:border-t-0">
-                            <Link to="/login" className="w-full md:w-auto">
-                                <Button variant="ghost" size="small" className="w-full md:w-auto">Login</Button>
-                            </Link>
-                            <a href="https://www.bestitcourses.com/" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto">
-                                <Button variant="primary" size="small" className="w-full md:w-auto">Sign Up</Button>
-                            </a>
+                            {isLoggedIn ? (
+                                <div className="relative md:ml-4">
+                                    <details className="group">
+                                        <summary className="list-none cursor-pointer inline-flex items-center gap-2 px-4 py-2 border-2 border-border bg-white rounded-md font-semibold">
+                                            My Account
+                                            <span className="text-text-light">▾</span>
+                                        </summary>
+                                        <div className="absolute right-0 mt-2 w-56 bg-white border border-border rounded-md shadow-lg p-2 z-[1002]">
+                                            <button className="w-full text-left px-3 py-2 rounded hover:bg-light-blue" onClick={() => navigate('/my-account')}>My Dashboard</button>
+                                            {/* <button className="w-full text-left px-3 py-2 rounded hover:bg-light-blue" onClick={() => navigate('/exam-history')}>My Exam History</button> */}
+                                            <div className="my-2 h-px bg-border" />
+                                            <button className="w-full text-left px-3 py-2 rounded hover:bg-light-blue" onClick={handleLogout}>Logout</button>
+                                        </div>
+                                    </details>
+                                </div>
+                            ) : (
+                                <>
+                                    <Link to="/login" className="w-full md:w-auto">
+                                        <Button variant="ghost" size="small" className="w-full md:w-auto">Login</Button>
+                                    </Link>
+                                    <a href="https://www.bestitcourses.com/" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto">
+                                        <Button variant="primary" size="small" className="w-full md:w-auto">Sign Up</Button>
+                                    </a>
+                                </>
+                            )}
                         </div>
                     </nav>
 
@@ -67,7 +102,7 @@ const Header = () => {
                         className="block md:hidden bg-transparent border-none text-2xl text-text-primary cursor-pointer z-[1001] p-2"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle menu"
-                        aria-expanded={isMobileMenuOpen}
+                        aria-expanded={isMobileMenuOpen ? 'true' : 'false'}
                     >
                         {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
                     </button>

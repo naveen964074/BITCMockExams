@@ -8,11 +8,11 @@ const Home = () => {
     return (
         <div className="home">
             {/* Hero Section */}
-            <section className="relative min-h-[600px] display flex items-center bg-gradient-to-br from-primary-blue via-secondary-blue to-dark-blue text-white overflow-hidden md:min-h-[500px]">
+            <section className="relative min-h-[600px] flex items-center justify-center bg-gradient-to-br from-primary-blue via-secondary-blue to-dark-blue text-white overflow-hidden md:min-h-[500px]">
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80')] bg-cover bg-center opacity-10"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-blue/90 to-secondary-blue/80"></div>
-                <div className="container mx-auto px-4 relative z-10 py-16">
-                    <div className="max-w-[800px] animate-fadeIn">
+                <div className="container mx-auto px-4 relative z-10 py-16 flex justify-center items-center">
+                    <div className="max-w-[800px] animate-fadeIn text-center mx-auto">
                         <h1 className="text-5xl font-extrabold mb-6 leading-tight text-white md:text-3xl">
                             Transform Your Cloud Journey
                         </h1>
@@ -20,7 +20,7 @@ const Home = () => {
                             Master cloud certifications with expert-led training, comprehensive mock exams,
                             and personalized guidance. Join 50,000+ successful students worldwide.
                         </p>
-                        <div className="flex flex-col md:flex-row gap-6 flex-wrap">
+                        <div className="flex flex-col md:flex-row gap-6 flex-wrap justify-center">
                             <Link to="/mock-exams">
                                 <Button variant="secondary" size="large" icon={<FaArrowRight />}>
                                     Explore Mock Exams
@@ -71,8 +71,8 @@ const Home = () => {
                                 <svg width="60" height="60" viewBox="0 0 100 100" className="shrink-0 drop-shadow-sm md:self-center">
                                     <defs>
                                         <linearGradient id="gradient-fundamentals" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style={{ stopColor: '#0078D4', stopOpacity: 1 }} />
-                                            <stop offset="100%" style={{ stopColor: '#004578', stopOpacity: 1 }} />
+                                            <stop offset="0%" stopColor="#0078D4" stopOpacity={1} />
+                                            <stop offset="100%" stopColor="#004578" stopOpacity={1} />
                                         </linearGradient>
                                     </defs>
                                     <path
@@ -112,8 +112,8 @@ const Home = () => {
                                 <svg width="60" height="60" viewBox="0 0 100 100" className="shrink-0 drop-shadow-sm md:self-center">
                                     <defs>
                                         <linearGradient id="gradient-rolebased" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style={{ stopColor: '#106EBE', stopOpacity: 1 }} />
-                                            <stop offset="100%" style={{ stopColor: '#004578', stopOpacity: 1 }} />
+                                            <stop offset="0%" stopColor="#106EBE" stopOpacity={1} />
+                                            <stop offset="100%" stopColor="#004578" stopOpacity={1} />
                                         </linearGradient>
                                     </defs>
                                     <path
@@ -153,8 +153,8 @@ const Home = () => {
                                 <svg width="60" height="60" viewBox="0 0 100 100" className="shrink-0 drop-shadow-sm md:self-center">
                                     <defs>
                                         <linearGradient id="gradient-speciality" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style={{ stopColor: '#50E6FF', stopOpacity: 1 }} />
-                                            <stop offset="100%" style={{ stopColor: '#004578', stopOpacity: 1 }} />
+                                            <stop offset="0%" stopColor="#50E6FF" stopOpacity={1} />
+                                            <stop offset="100%" stopColor="#004578" stopOpacity={1} />
                                         </linearGradient>
                                     </defs>
                                     <path

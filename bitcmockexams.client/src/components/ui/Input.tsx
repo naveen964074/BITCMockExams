@@ -5,7 +5,7 @@ interface InputProps {
     type?: string;
     name: string;
     value: string | number | boolean;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void;
     placeholder?: string;
     error?: string;
     required?: boolean;
@@ -34,10 +34,6 @@ const Input: React.FC<InputProps> = ({
     const errorClasses = error ? "border-error focus:ring-error/10" : "";
     const textareaClasses = isTextarea ? "resize-y min-h-[100px]" : "";
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
-        onChange(e as React.ChangeEvent<HTMLInputElement>);
-    };
-
     return (
         <div className={`mb-lg ${className}`}>
             {label && (
@@ -52,13 +48,13 @@ const Input: React.FC<InputProps> = ({
                     id={inputId}
                     name={name}
                     value={value as string}
-                    onChange={handleChange}
+                    onChange={onChange}
                     placeholder={placeholder}
                     required={required}
                     disabled={disabled}
                     rows={rows}
                     className={`${baseInputClasses} ${errorClasses} ${textareaClasses}`}
-                    aria-invalid={error ? 'true' : 'false'}
+                    aria-invalid={error ? 'true' : undefined}
                     aria-describedby={error ? `${inputId}-error` : undefined}
                 />
             ) : (
@@ -67,12 +63,12 @@ const Input: React.FC<InputProps> = ({
                     type={type}
                     name={name}
                     value={value as string}
-                    onChange={handleChange}
+                    onChange={onChange}
                     placeholder={placeholder}
                     required={required}
                     disabled={disabled}
                     className={`${baseInputClasses} ${errorClasses}`}
-                    aria-invalid={error ? 'true' : 'false'}
+                    aria-invalid={error ? 'true' : undefined}
                     aria-describedby={error ? `${inputId}-error` : undefined}
                 />
             )}

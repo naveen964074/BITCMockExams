@@ -363,3 +363,52 @@ export const companyValues: CompanyValue[] = [
         icon: '🎓'
     }
 ];
+
+// Test suite modules per exam title (suiteName)
+export const suiteModules: Record<string, Array<{ id: number; title: string; description: string; questions: number; durationMins: number }>> = {
+    'AI-102: DESIGNING AND IMPLEMENTING A MICROSOFT AZURE AI SOLUTION': [
+        { id: 1, title: 'Plan and manage an Azure AI solution', description: 'Select the appropriate Azure AI service, Plan and configure security for Azure AI services, Create and manage an Azure AI service, Deploy Azure AI services, Create solutions to detect anomalies and improve content', questions: 55, durationMins: 60 },
+        { id: 2, title: 'Implement image and video processing solutions', description: 'Analyze images, Extract text from images, Implement image classification and object detection by using the Custom Vision service, part of Azure Cognitive Services, Process videos', questions: 62, durationMins: 60 },
+        { id: 3, title: 'Implement natural language processing solutions', description: 'Analyze text, Process speech, Translate language, Build and manage a language understanding model, Create a question answering solution', questions: 77, durationMins: 60 },
+        { id: 4, title: 'Implement knowledge mining solutions', description: 'Implement a Cognitive Search solution, Apply AI enrichment skills to an indexer pipeline', questions: 28, durationMins: 60 },
+        { id: 5, title: 'Implement conversational AI solutions', description: 'Design and implement conversation flow, Build a conversational bot, Test, publish, and maintain a conversational bot', questions: 76, durationMins: 60 },
+    ],
+    'Azure AI Fundamentals': [
+        { id: 1, title: 'Describe Artificial Intelligence workloads and considerations', description: 'Identify features of common AI workloads | Identify guiding principles of responsible AI', questions: 61, durationMins: 60 },
+        { id: 2, title: 'Describe Fundamental principles of machine learning on Azure', description: 'Identify common machine learning techniques | Core Machine learning Concepts', questions: 90, durationMins: 60 },
+        { id: 3, title: 'Describe features of Natural Language Processing (NLP) workloads on Azure', description: 'Identify features of common NLP Workload Scenarios | Azure tools and services for NLP workloads', questions: 71, durationMins: 60 },
+        { id: 4, title: 'Describe features of generative AI workloads on Azure', description: 'Identify features of generative AI solutions | Capabilities of Azure OpenAI Service', questions: 37, durationMins: 60 },
+        { id: 5, title: 'Describe features of computer vision workloads on Azure', description: 'Identify common types of computer vision solution | Identify Azure tools and services for computer vision tasks', questions: 63, durationMins: 60 },
+    ],
+};
+
+// Minimal stub for module-specific questions per suite
+export const suiteQuestions: Record<string, Record<number, Array<{ id: number; domain: string; prompt: string; scenario?: string; options: { key: string; text: string }[]; correct: string; explanation?: string }>>> = {
+    'Azure AI Fundamentals': {
+        1: [
+            {
+                id: 1,
+                domain: 'Identify common types of computer vision solution',
+                prompt: 'Match the types of computer vision workloads to the following scenario.',
+                scenario: 'Generate captions for images',
+                options: [
+                    { key: 'A', text: 'Image classification' },
+                    { key: 'B', text: 'Object detection' },
+                    { key: 'C', text: 'Optical character recognition (OCR)' },
+                ],
+                correct: 'A',
+            },
+        ],
+        2: [],
+        3: [],
+        4: [],
+        5: [],
+    },
+    'AI-102: DESIGNING AND IMPLEMENTING A MICROSOFT AZURE AI SOLUTION': {
+        1: [],
+        2: [],
+        3: [],
+        4: [],
+        5: [],
+    },
+};

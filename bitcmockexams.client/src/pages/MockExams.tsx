@@ -1,9 +1,10 @@
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import Button from '../components/ui/Button';
 import { mockExams } from '../data/mockData';
 
 const MockExams = () => {
+    const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const difficulty = searchParams.get('difficulty');
 
@@ -63,7 +64,9 @@ const MockExams = () => {
                                     </span>
                                 </div>
 
-                                <h3 className="text-2xl font-bold text-text-primary m-0 mb-2 leading-tight">{exam.title}</h3>
+                                <h3 className="text-2xl font-bold text-text-primary m-0 mb-2 leading-tight">
+                                    <a className="no-underline text-text-primary hover:text-primary-blue" href={`/tests/${encodeURIComponent(exam.title)}`}>{exam.title}</a>
+                                </h3>
                                 <p className="text-sm text-text-light m-0 mb-6">{exam.code}</p>
 
                                 <div className="bg-bg-light rounded-md p-4 mb-6">
@@ -89,7 +92,14 @@ const MockExams = () => {
                                     <div className="text-2xl font-bold text-primary-blue">${exam.price}</div>
                                 </div>
 
-                                <Button variant="primary" fullWidth>Start Practice</Button>
+                                    <div className="text-right mt-6">
+                                        <Button
+                                            variant="secondary"
+                                            onClick={() => navigate(`/tests/${encodeURIComponent(exam.title)}`)}
+                                        >
+                                            Start Practice
+                                        </Button>
+                                    </div>
                             </div>
                         ))}
                     </div>

@@ -14,8 +14,9 @@ const Login = () => {
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value, type, checked } = e.target;
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+        const target = e.target as HTMLInputElement;
+        const { name, value, type, checked } = target;
         setFormData(prev => ({
             ...prev,
             [name]: type === 'checkbox' ? checked : value
@@ -59,8 +60,12 @@ const Login = () => {
 
         // Simulate API call
         setTimeout(() => {
+            // mark as logged in (simple localStorage flag)
+            try {
+                localStorage.setItem('isLoggedIn', 'true');
+            } catch {}
             alert('Login successful!');
-            navigate('/');
+            navigate('/dashboard');
             setIsSubmitting(false);
         }, 1500);
     };
